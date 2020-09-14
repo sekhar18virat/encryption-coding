@@ -1,0 +1,53 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the encryption function below.
+def encryption(s):
+    f=s.split()
+    w=0
+    for i in f:
+        w+=len(i)
+    i=math.sqrt(w)
+    c=math.ceil(i)
+    r=math.floor(i)
+    z=[]
+    l=''
+    j=0
+    q2=['']*c
+    for i in range(len(s)):
+        if(s[i]==' '):
+            pass
+        else:
+            l=l+s[i]
+            if(len(l)==c):
+                z.append(l)
+                l=''
+                j=i
+    if(j!=len(s)):
+        s1=s[j+1:]
+        while(len(s1)<=r):
+            s1+=' '
+        z.append(s1)
+    for i in z:
+        for j in range(len(i)):
+            if(i[j]==' '):
+                pass
+            else:
+                q2[j]+=i[j]
+    return(' '.join(q2))
+                
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = encryption(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
